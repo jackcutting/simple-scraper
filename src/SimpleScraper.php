@@ -64,17 +64,17 @@ class SimpleScraper {
 				array_key_exists('property', $attrArray) && 
 				preg_match('~og:([a-zA-Z:_]+)~', $attrArray['property'], $matches)
 			) {
-				$this->data['ogp'][$matches[1]] = $attrArray['content'];
+				$this->data['ogp'][$matches[1]] = isset($this->data['ogp'][$matches[1]]) ? $this->data['ogp'][$matches[1]] : $attrArray['content'];
 			} else if (
 				array_key_exists('name', $attrArray) &&
 				preg_match('~twitter:([a-zA-Z:_]+)~', $attrArray['name'], $matches)
 			) {
-				$this->data['twitter'][$matches[1]] = $attrArray['content'];
+				$this->data['twitter'][$matches[1]] = isset($$this->data['twitter'][$matches[1]]) ? $this->data['twitter'][$matches[1]] : $attrArray['content'];
 			} else if (
 				array_key_exists('name', $attrArray) &&
 				array_key_exists('content', $attrArray)
 			) {
-				$this->data['meta'][$attrArray['name']] = $attrArray['content'];
+				$this->data['meta'][$attrArray['name']] = isset($this->data['meta'][$attrArray['name']]) ? $this->data['meta'][$attrArray['name']] : $attrArray['content'];
 			}
 		}
 	}
